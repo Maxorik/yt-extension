@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Youtube Reload Extension",
+  "version": "1.0",
+  "permissions": ["activeTab", "scripting", "tabs"],
+  "description": "Переоткрывает вкладку с youtube",
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "extension.html"
+  }
+}
