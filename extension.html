@@ -2,25 +2,33 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <style>
-        body {
-            background-color: #131313;
-        }
-        #reload-btn {
-            width: 200px;
-            height: 40px;
-            background: #a90513;
-            color: #fcffec;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        #reload-btn:hover {
-            background-color: #8c0510;
-        }
-    </style>
 </head>
 <body>
-<button id="reload-btn">reload youtube page!</button>
+<button id="reload-btn">перезагрузить страницу!</button>
+<div class="container">
+    <input type="checkbox" id="hotkeys-toggle">
+    <span id="lang-hotkeys-toggle">отключить youtube-хоткеи (0-9)</span>
+</div>
 <script src="popup.js"></script>
 </body>
+<style>
+    body, html {
+        background-color: #131313;
+        color: #fff;
+        border-radius: 5px;
+    }
+    #reload-btn {
+        width: 200px;
+        height: 40px;
+        background: #a90513;
+        color: #fcffec;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 10px;
+    }
+    #reload-btn:hover { background-color: #8c0510; }
+    .container {display: flex; margin: 0 10px 10px 10px; }
+    input { cursor: pointer }
+    #lang-hotkeys-toggle { transition: color 0.2s ease-in-out; }
+</style>
 </html>

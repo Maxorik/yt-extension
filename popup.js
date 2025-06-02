@@ -3,6 +3,15 @@
  *            https://sky.pro/wiki/html/izvlechenie-html-iskhodnika-stranitsy-s-chrome-rasshireniya/
  */
 
+const lang = navigator.language;
+const hotkeys_toggle = document.getElementById('hotkeys-toggle');
+const lang_hotkeys_toggle = document.getElementById('lang-hotkeys-toggle');
+
+if (lang !== 'ru') {
+    document.getElementById('reload-btn').textContent = 'reload the page!';
+    lang_hotkeys_toggle.textContent = 'disable youtube-hotkeys (0-9)';
+}
+
 /** Добавляем событие на кнопку плагина */
 document.getElementById('reload-btn').addEventListener('click', () => {
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
@@ -38,3 +47,21 @@ function callback(response, currentTabId) {
     setTimeout(chrome.tabs.remove(currentTabId), 1000);
     chrome.tabs.create({ url: timedTabUrl });
 }
+
+/** Добавляем событие чекбокс против хоткеев */
+hotkeys_toggle.addEventListener('change', () => {
+    const ok_color = '#71f13b';
+    const def_color = '#fff';
+
+    lang_hotkeys_toggle.style.color = ok_color;
+    setTimeout(() => { lang_hotkeys_toggle.style.color = def_color; }, 200)
+});
+
+/** перехват хоткеев */
+window.addEventListener('keydown', (e) => {
+    const hotkeys = ['0','1','2','3','4','5','6','7','8','9',0,1,2,3,4,5,6,7,8,9];
+    if (hotkeys.includes(e.key)) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+}, true);
